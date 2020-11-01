@@ -20,9 +20,6 @@
     "doctrine/collections": {
         "version": "1.6.7"
     },
-    "doctrine/common": {
-        "version": "3.0.2"
-    },
     "doctrine/dbal": {
         "version": "2.12.0"
     },
@@ -41,19 +38,6 @@
             "src/Repository/.gitignore"
         ]
     },
-    "doctrine/doctrine-migrations-bundle": {
-        "version": "2.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.2",
-            "ref": "baaa439e3e3179e69e3da84b671f0a3e4a2f56ad"
-        },
-        "files": [
-            "config/packages/doctrine_migrations.yaml",
-            "migrations/.gitignore"
-        ]
-    },
     "doctrine/event-manager": {
         "version": "1.1.1"
     },
@@ -66,20 +50,43 @@
     "doctrine/lexer": {
         "version": "1.2.1"
     },
-    "doctrine/migrations": {
-        "version": "3.0.1"
+    "doctrine/mongodb-odm": {
+        "version": "2.1.2"
     },
-    "doctrine/orm": {
-        "version": "2.7.4"
+    "doctrine/mongodb-odm-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "1fd8598bf42227a1c8905edd32f640e4c5d15eff"
+        },
+        "files": [
+            "config/packages/doctrine_mongodb.yaml",
+            "config/packages/prod/doctrine_mongodb.yaml",
+            "src/Document/.gitignore"
+        ]
     },
     "doctrine/persistence": {
         "version": "2.1.0"
+    },
+    "doctrine/reflection": {
+        "version": "1.2.1"
     },
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
     "egulias/email-validator": {
         "version": "2.1.22"
+    },
+    "jean85/pretty-package-versions": {
+        "version": "1.5.1"
+    },
+    "jms/metadata": {
+        "version": "2.3.0"
+    },
+    "jms/serializer": {
+        "version": "3.10.0"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
@@ -89,6 +96,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.1.1"
+    },
+    "mongodb/mongodb": {
+        "version": "1.6.1"
     },
     "monolog/monolog": {
         "version": "2.1.1"
