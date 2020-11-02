@@ -1,4 +1,7 @@
 {
+    "alcaeus/mongo-php-adapter": {
+        "version": "1.1.13"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99"
     },
@@ -120,6 +123,12 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.53"
+    },
+    "phpstan/phpstan-symfony": {
+        "version": "0.12.11"
     },
     "psr/cache": {
         "version": "1.0.1"

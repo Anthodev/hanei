@@ -7,6 +7,9 @@ parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
 
+    symfony:
+        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+
 services:
     # default configuration for services in *this* file
     _defaults:
