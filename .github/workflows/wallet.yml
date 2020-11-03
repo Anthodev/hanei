@@ -1,0 +1,64 @@
+name: 'wallet'
+
+on:
+  push:
+    branches-ignore: [ stable ]
+    paths:
+      - 'WalletService/**'
+
+  pull_request:
+    branches-ignore: [ stable ]
+    paths:
+      - 'WalletService/**'
+
+env:
+  DATABASE_URL: ''
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP, extensions and composer with shivammathur/setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo, mongodb
+        env:
+          update: true
+
+      - name: Setup Redis with zhulik/redis-action
+        uses: zhulik/redis-action@1.1.0
+        with:
+          redis version: '5'
+
+      - name: Validate composer.json and composer.lock
+        uses: php-actions/composer@v3
+        with:
+          working_dir: WalletService/
+          command: validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          working_dir: WalletService/
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        uses: php-actions/composer@v3
+        with:
+          working_dir: WalletService/
+
+      - name: Run phpstan
+        run: ./WalletService/vendor/bin/phpstan analyse src --level 5
+
+      - name: Run phpunit for WalletService
+        uses: php-actions/phpunit@v8
+        with:
+          configuration: WalletService/phpunit.xml
