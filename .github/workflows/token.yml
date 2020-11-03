@@ -25,7 +25,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo, mongodb
+          extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo
         env:
           update: true
 
@@ -37,14 +37,14 @@ jobs:
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v3
         with:
-          working_dir: TokenService/
+          working_dir: ${{ github.workspace }}/TokenService/
           command: validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
         with:
-          working_dir: TokenService/
+          working_dir: ${{ github.workspace }}/TokenService/
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
@@ -53,12 +53,12 @@ jobs:
       - name: Install dependencies
         uses: php-actions/composer@v3
         with:
-          working_dir: TokenService/
+          working_dir: ${{ github.workspace }}/TokenService/
 
       - name: Run phpstan
-        run: ./TokenService/vendor/bin/phpstan analyse src --level 5
+        run: ${{ github.workspace }}/TokenService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TokenService
         uses: php-actions/phpunit@v8
         with:
-          configuration: TokenService/phpunit.xml
+          configuration: ${{ github.workspace }}/TokenService/phpunit.xml
