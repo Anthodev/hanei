@@ -36,15 +36,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v3
-        working-directory: ./WalletService
         with:
+          working_dir: ./WalletService
           command: validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
-        working-directory: ./WalletService
         with:
+          working_dir: ./WalletService
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
@@ -52,11 +52,13 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        working-directory: ./WalletService
+        with:
+          working_dir: ./WalletService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/WalletService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for WalletService
         uses: php-actions/phpunit@v8
-        working-directory: ./WalletService
+        with:
+          configuration: ./WalletService/phpunit.xml
