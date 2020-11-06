@@ -54,7 +54,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./TokenService
         run: |
-          composer install --no-progress --prefer-dist --optimize-autoloader
+          composer install --no-progress --with-all-dependencies --prefer-dist --optimize-autoloader
 
       - name: Run phpstan
         run: ${{ github.workspace }}/TokenService/vendor/bin/phpstan analyse src --level 5

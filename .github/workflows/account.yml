@@ -15,7 +15,7 @@ env:
   DB_NAME: test
   DB_USER: test
   DB_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
-  DATABASE_URL: mongodb://$DB_USER:$DB_ROOT_PASSWORD@localhost:27017/$DB_NAME
+  DATABASE_URL: mongodb://$DB_USER:$DB_ROOT_PASSWORD@mongodb:27017/$DB_NAME
 
 jobs:
   test:
@@ -66,7 +66,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./AccountService
         run: |
-          composer install --no-progress --prefer-dist --optimize-autoloader
+          composer install --no-progress --with-all-dependencies --prefer-dist --optimize-autoloader
 
       - name: Run coding standards checks
         run: make cs
