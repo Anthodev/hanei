@@ -36,15 +36,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v3
+        working_dir: ./TokenService
         with:
-          working_dir: ${{ github.workspace }}/TokenService/
           command: validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
+        working_dir: ./TokenService
         with:
-          working_dir: ${{ github.workspace }}/TokenService/
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
@@ -52,13 +52,11 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ${{ github.workspace }}/TokenService/
+        working_dir: ./TokenService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/TokenService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TokenService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ${{ github.workspace }}/TokenService/phpunit.xml
+        working_dir: ./TokenService

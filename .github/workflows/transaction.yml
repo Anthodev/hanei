@@ -36,15 +36,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v3
+        working_dir: ./TransactionService
         with:
-          working_dir: ${{ github.workspace }}/TransactionService/
           command: validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
+        working_dir: ./TransactionService
         with:
-          working_dir: ${{ github.workspace }}/TransactionService/
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
@@ -52,13 +52,11 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ${{ github.workspace }}/TransactionService/
+        working_dir: ./TransactionService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/TransactionService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TransactionService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ${{ github.workspace }}/TransactionService/phpunit.xml
+        working_dir: ./TransactionService

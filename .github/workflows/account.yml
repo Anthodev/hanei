@@ -49,15 +49,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         uses: php-actions/composer@v3
+        working_dir: ./AccountService
         with:
-          working_dir: ${{ github.workspace }}/AccountService/
           command: validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
+        working_dir: ./AccountService
         with:
-          working_dir: ${{ github.workspace }}/AccountService/
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
@@ -65,8 +65,7 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ${{ github.workspace }}/AccountService/
+        working_dir: ./AccountService
 
       - name: Run coding standards checks
         run: make cs
@@ -74,5 +73,4 @@ jobs:
 
       - name: Run phpunit for AccountService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ${{ github.workspace }}/AccountService/phpunit.xml
+        working_dir: ./AccountService
