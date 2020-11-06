@@ -66,7 +66,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./AccountService
         run: |
-          composer install --no-progress --with-all-dependencies --prefer-dist --optimize-autoloader
+          composer install -W --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run coding standards checks
         run: make cs
