@@ -26,6 +26,7 @@ jobs:
         with:
           php-version: '7.4'
           extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo
+          tools: composer, phpunit:8.5.8, phpstan
         env:
           update: true
 
@@ -34,11 +35,11 @@ jobs:
         with:
           redis version: '5'
 
-      - name: Validate composer.json and composer.lock
-        uses: php-actions/composer@v3
-        with:
-          working_dir: ./TokenService
-          command: validate
+      # - name: Validate composer.json and composer.lock
+      #   uses: php-actions/composer@v3
+      #   with:
+      #     working_dir: ./TokenService
+      #     command: validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -52,13 +53,11 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ./TokenService
+        working-directory: ./TokenService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/TokenService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TokenService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ./TokenService/phpunit.xml
+        working-directory: ./TokenService

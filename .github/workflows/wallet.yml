@@ -35,11 +35,11 @@ jobs:
         with:
           redis version: '5'
 
-      - name: Validate composer.json and composer.lock
-        uses: php-actions/composer@v3
-        with:
-          working_dir: ./WalletService
-          command: validate
+      # - name: Validate composer.json and composer.lock
+      #   uses: php-actions/composer@v3
+      #   with:
+      #     working_dir: ./WalletService
+      #     command: validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -53,13 +53,11 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ./WalletService
+        working-directory: ./WalletService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/WalletService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for WalletService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ./WalletService/phpunit.xml
+        working-directory: ./WalletService

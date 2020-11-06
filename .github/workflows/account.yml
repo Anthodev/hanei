@@ -48,10 +48,10 @@ jobs:
         with:
           redis version: '5'
 
-      - name: Validate composer.json and composer.lock
-        working-directory: ./AccountService
-        run: |
-          composer validate
+      # - name: Validate composer.json and composer.lock
+      #   working-directory: ./AccountService
+      #   run: |
+      #     composer validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -74,5 +74,4 @@ jobs:
 
       - name: Run phpunit for AccountService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ./AccountService/phpunit.xml
+        working-directory: ./AccountService

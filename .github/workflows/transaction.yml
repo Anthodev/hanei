@@ -26,6 +26,7 @@ jobs:
         with:
           php-version: '7.4'
           extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo
+          tools: composer, phpunit:8.5.8, phpstan
         env:
           update: true
 
@@ -34,11 +35,11 @@ jobs:
         with:
           redis version: '5'
 
-      - name: Validate composer.json and composer.lock
-        uses: php-actions/composer@v3
-        with:
-          working_dir: ./TransactionService
-          command: validate
+      # - name: Validate composer.json and composer.lock
+      #   uses: php-actions/composer@v3
+      #   with:
+      #     working_dir: ./TransactionService
+      #     command: validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -52,13 +53,11 @@ jobs:
 
       - name: Install dependencies
         uses: php-actions/composer@v3
-        with:
-          working_dir: ./TransactionService
+        working-directory: ./TransactionService
 
       - name: Run phpstan
         run: ${{ github.workspace }}/TransactionService/vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TransactionService
         uses: php-actions/phpunit@v8
-        with:
-          configuration: ./TransactionService/phpunit.xml
+        working-directory: ./TransactionService
