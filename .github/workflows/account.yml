@@ -74,4 +74,5 @@ jobs:
 
       - name: Run phpunit for AccountService
         uses: php-actions/phpunit@v8
-        working-directory: ./AccountService
+        with:
+          configuration: ./AccountService/phpunit.xml
