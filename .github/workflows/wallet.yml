@@ -26,6 +26,7 @@ jobs:
         with:
           php-version: '7.4'
           extensions: mbstring, xml, ctype, iconv, intl, dom, filter, gd, iconv, json, mbstring, pdo
+          tools: composer, phpunit:8.5.8, phpstan
         env:
           update: true
 
