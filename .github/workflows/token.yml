@@ -61,6 +61,5 @@ jobs:
         run: vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TokenService
-        uses: php-actions/phpunit@v8
-        with:
-          configuration: ./TokenService/phpunit.xml
+        working-directory: ./TokenService
+        run: vendor/bin/simple-phpunit

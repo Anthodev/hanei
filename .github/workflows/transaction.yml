@@ -61,6 +61,5 @@ jobs:
         run: vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for TransactionService
-        uses: php-actions/phpunit@v8
-        with:
-          configuration: ./TransactionService/phpunit.xml
+        working-directory: ./TransactionService
+        run: vendor/bin/simple-phpunit
