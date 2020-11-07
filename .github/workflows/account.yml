@@ -73,8 +73,6 @@ jobs:
 
       - name: Run phpunit for AccountService
         working-directory: ./AccountService
-        uses: php-actions/phpunit@v8
         env:
           DATABASE_URL: mongodb://$DB_USER:$DB_ROOT_PASSWORD@${{ job.services.mongodb }}:27017/$DB_NAME
-        with:
-          configuration: ./AccountService/phpunit.xml
+        run: vendor/bin/phpunit
