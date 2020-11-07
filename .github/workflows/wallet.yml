@@ -56,8 +56,9 @@ jobs:
         run: |
           composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Run phpstan
-        run: ${{ github.workspace }}/WalletService/vendor/bin/phpstan analyse src --level 5
+      - name: Run coding standards checks
+        working-directory: ./WalletService
+        run: vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for WalletService
         uses: php-actions/phpunit@v8

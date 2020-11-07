@@ -68,8 +68,8 @@ jobs:
           composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run coding standards checks
-        run: make cs
-        # run: ./AccountService/vendor/bin/phpstan analyse src --level 5
+        working-directory: ./AccountService
+        run: vendor/bin/phpstan analyse src --level 5
 
       - name: Run phpunit for AccountService
         working-directory: ./AccountService
