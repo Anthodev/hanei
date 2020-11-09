@@ -170,6 +170,7 @@ class User implements UserInterface, \Serializable
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
+    
     /**
      * @see UserInterface
      */
@@ -178,6 +179,7 @@ class User implements UserInterface, \Serializable
         // If you store any temporary, sensitive data on the user, clear it here
         $this->plainPassword = null;
     }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -189,6 +191,7 @@ class User implements UserInterface, \Serializable
             // $this->salt,
         ]);
     }
+
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
