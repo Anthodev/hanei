@@ -1,11 +1,6 @@
 name: 'wallet'
 
 on:
-  push:
-    branches-ignore: [ stable ]
-    paths:
-      - 'WalletService/**'
-
   pull_request:
     branches-ignore: [ stable ]
     paths:

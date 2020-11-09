@@ -1,11 +1,6 @@
 name: 'token'
 
 on:
-  push:
-    branches-ignore: [ stable ]
-    paths:
-      - 'TokenService/**'
-
   pull_request:
     branches-ignore: [ stable ]
     paths:

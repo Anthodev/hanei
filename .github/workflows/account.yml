@@ -1,11 +1,6 @@
 name: 'account'
 
 on:
-  push:
-    branches-ignore: [ stable ]
-    paths:
-      - 'AccountService/**'
-
   pull_request:
     branches-ignore: [ stable ]
     paths:

@@ -1,11 +1,6 @@
 name: 'transaction'
 
 on:
-  push:
-    branches-ignore: [ stable ]
-    paths:
-      - 'TransactionService/**'
-
   pull_request:
     branches-ignore: [ stable ]
     paths:
