@@ -85,6 +85,12 @@
     "jean85/pretty-package-versions": {
         "version": "1.5.1"
     },
+    "jms/metadata": {
+        "version": "2.3.0"
+    },
+    "jms/serializer": {
+        "version": "3.10.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },

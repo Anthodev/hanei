@@ -11,6 +11,7 @@
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/mongodb-odm-bundle": "^4.2",
+        "jms/serializer": "^3.10",
         "lexik/jwt-authentication-bundle": "^2.9",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
